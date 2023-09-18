@@ -1,0 +1,10 @@
+{
+    "name": "luizfilipe/login",
+    "autoload": {
+        "psr-4": {
+            "app\\":"app"
+        }
+    },
+    "require": {"firebase/php-jwt":"^6.8"
+}
+}

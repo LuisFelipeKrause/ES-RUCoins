@@ -1,10 +1,18 @@
 <?php 
 //Classe principal
+require __DIR__ . '\vendor\autoload.php';
+use \Firebase\JWT\JWT;
+include("../model/Data.php");
 $ctrl = new ControlPanel();
 
 if(isset($_GET['enter'])){
     if($ctrl->VerificadorPI()==1){
-        echo("entrou");
+        $data = new Data();
+        $string = $data->login($_GET['CPF'], $_GET['Pass']);
+        $acesso = JWT::decode($string, "maozinhaslegais");
+        if($acesso){
+            header();
+        }
     }
 }else{
     if(isset($_GET['forgotPass'])){

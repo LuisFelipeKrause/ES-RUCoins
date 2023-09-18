@@ -28,7 +28,9 @@ class Data{
             "email" == $cpf,
         ];
 
-        $encode = JWT::encode($payload, "maozinhaslegais");
+        $encode = JWT::encode($payload, "maozinhaslegais", 'HS256');
+
+        return $encode;
     }
 }
 ?>

@@ -1,15 +1,18 @@
 <?php 
 //Classe que será usada para instanciar conexão com banco de dados
-use PDO;
 class Connection{
     public static function Connect(){
         $host = "localhost";
-        $dbname = "";//Insira aqui nome do banco de dados 
-        $user = ""; //Isira aqui seu nome de usuário;
-        $password = ""; //Insira aqui sua senha;
-        return new PDO("mysql:host=".$host.";dbname".$dbname, $user, $password[
-            PDO::ATTR_DEFAULT_FETCH_MODE == PDO::FETCH_OBJ
-        ]);
+        $dbname = "loginRU";//Insira aqui nome do banco de dados 
+        $user = "root"; //Isira aqui seu nome de usuário;
+        $password = null; //Insira aqui sua senha;
+        $conn = mysqli_connect($host, $user, $password, $dbname);
+            // Check connection
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }else{
+                return $conn;
+            }
     }
 }
 ?>

@@ -40,6 +40,9 @@ data_atualizacao date
 alter table usuarios add foreign key (permissao) references legendas_permissao(legendas_permissao_id);
 alter table usuarios add foreign key (estado_conta) references legendas_estado(legendas_estado_id);
 
+insert into usuarios(nome, sobrenome, cpf, email, senha, data_de_nascimento, data_criacao, data_atualizacao)
+values
+("Pedro", "Loyola", "12345678912", "pedrinho@uol.com", "senha", now(),usuariosusuariosusuariosusuario_idnome now(), now());
 
 create table saldo(
 	saldo_id integer not null auto_increment primary key,

@@ -21,7 +21,7 @@
 
         <section>
             <div class="search-itens">
-                <form class="search-form" method="post" action="http://localhost/PHP/ES-RUCoins/controller/ADMpanel.php">
+                <form class="search-form" method="post" action="">
                     <div class="mb-3 search-input">
                         <label for="" class="form-label">Buscar</label>
                         <input type="text" name="CPF" class="form-control" id="" aria-describedby="">
@@ -47,22 +47,35 @@
                         <th class="table-icon-width">Permissão</th>
                     </tr>
                     <?php
-                        include_once '../model/Data.php';
-                        $data = new Data();
-                        $result = $data->tableC();
-                        $i = 1;
-                        while($res = mysqli_fetch_assoc($result)){
-                            echo "<tr>
-                                <th>".$i."</th>
-                                <td>".$res['nome']."</td>
-                                <td>".$res['email']."</td>
-                                <td class='table-icon-width'>".$res['permissao']."
-                                    <a href='#'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
-                                    <a href='#'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
-                                    <a href='#'><i id='icon-trash' class=' fa-solid fa-trash'></i></a>
-                                </td>
-                            </tr>";
-                            $i = $i + 1;
+                    include_once '../model/Data.php';
+                        if(isset($_POST['Search']) && isset($_POST['CPF']) && !empty($_POST['CPF'])){
+                            $data = new Data();
+                            $list = $data->table($_POST['CPF']);
+                            resultados($list);
+                        }else{
+                            if(isset($_POST['Register'])){
+                                header("Location: http://localhost/PHP/ES-RUCOINS/view/CadstroUsuario.html");
+                            }else{
+                                $data = new Data();
+                                $result = $data->tableC();
+                                resultados($result);
+                            }
+                        }
+                        function resultados($data){
+                            $i = 1;
+                            while($res = mysqli_fetch_assoc($data)){
+                                echo "<tr>
+                                    <th>".$i."</th>
+                                    <td>".$res['nome']."</td>
+                                    <td>".$res['email']."</td>
+                                    <td class='table-icon-width'>".$res['permissao']."
+                                        <a href='#'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
+                                        <a href='#'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
+                                        <a href='#'><i id='icon-trash' class=' fa-solid fa-trash'></i></a>
+                                    </td>
+                                </tr>";
+                                $i = $i + 1;
+                            }
                         }
                     ?>
                 </table>

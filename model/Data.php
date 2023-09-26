@@ -26,7 +26,7 @@ class Data{
         ];
 
         $encode = JWT::encode($payload, "htsres", 'HS256');
-
+        $pdo->close();
         return $encode;
     }
 
@@ -38,7 +38,7 @@ class Data{
 
         $query = "SELECT nome, email, legendas_permissao.permissao FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id and usuarios.cpf = '$cpf';";
         $result = mysqli_query($pdo, $query);
-
+        $pdo->close();
         return $result;
     }
 
@@ -48,10 +48,36 @@ class Data{
 
         $tablename = "usuarios";
 
-        $query = "SELECT * FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id";
+        $query = "SELECT * FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id limit 5";
         $result = mysqli_query($pdo, $query);
-
+        $pdo->close();
         return $result;
+    }
+
+    public static function registerUser($nome, $sobrenome=null, $cpf, $perm, $email, $numMat){
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+
+        $tablename = "usuarios";
+
+        if(strcmp($perm, "Adm")==0){
+            $permissao = 2;
+        }else{
+            if(strcmp($perm, "Tecnico")==0){
+                $permissao = 3;
+            } else{
+                $permissao = 5;
+            }
+        }
+
+        $query = "INSERT INTO $tablename (permissao, nome, sobrenome, cpf, email, senha, data_de_nascimento, data_criacao, data_atualizacao) VALUES ('$permissao','$nome', '$sobrenome', '$cpf', '$email', 'senha', '20-20-2020', '20-20-2020', '20-20-2020')";
+        $result = mysqli_query($pdo, $query);
+        
+        if($result){
+            $pdo->close();
+            return true;
+        }
+        return false;
     }
 }
 ?>

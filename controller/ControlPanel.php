@@ -1,36 +1,24 @@
 <?php 
 //Classe principal
-require_once '../ES-RUCoins/vendor/autoload.php';
+include_once '../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 $ctrl = new ControlPanel();
-
 if(isset($_POST['enter'])){
     if($ctrl->VerificadorPI()==1){
-        require_once "../ES-RUCoins/model/Data.php";
+        include_once "../model/Data.php";
         $data = new Data();
         $string = $data->login($_POST['CPF'], $_POST['Pass']);
         if($string == -1){
+            header("Location: http://localhost/PHP/ES-RUCOINS/view/PaginaInicial.html");
+            echo "usuário não encontrado ou senha errada!";
             return -1;
         }
         $acesso = JWT::decode($string, new key("htsres", 'HS256'));
         $line = json_encode($acesso);
         $line = json_decode($line, true);
         if($line['perm'] <= 2){
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "http://localhost/PHP/ES-RUCOINS/view/AdmUser.php");
-            curl_exec($curl);
-            curl_close($curl);
-            if(isset($_POST['Register'])){
-                    $curl = curl_init();
-                    curl_setopt($curl, CURLOPT_URL, "http://localhost/PHP/ES-RUCOINS/view/CadstroUsuario.html");
-                    curl_exec($curl);
-                    curl_close($curl);
-            }else{
-                if(isset($_POST['Search'])){
-                    echo "okd";
-                }
-            }
+            header("Location: http://localhost/PHP/ES-RUCOINS/view/AdmUser.php");
         }else{
             if($line['perm'] == 3){
                 echo "Atendente logado";
@@ -67,13 +55,6 @@ class ControlPanel{
             echo("CPF não inserido!");
             return 0;
         }
-    }
-
-    public function InstanciaPaginaInicial(){
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "http://localhost/PHP/ES-RUCOINS/view/PaginaInicial.html");
-        curl_exec($curl);
-        curl_close($curl);
     }
 }
 ?>

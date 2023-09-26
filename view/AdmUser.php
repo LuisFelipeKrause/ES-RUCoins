@@ -21,7 +21,7 @@
 
         <section>
             <div class="search-itens">
-                <form class="search-form" method="post">
+                <form class="search-form" method="post" action="http://localhost/PHP/ES-RUCoins/controller/ADMpanel.php">
                     <div class="mb-3 search-input">
                         <label for="" class="form-label">Buscar</label>
                         <input type="text" name="CPF" class="form-control" id="" aria-describedby="">
@@ -47,16 +47,23 @@
                         <th class="table-icon-width">Permissão</th>
                     </tr>
                     <?php
-                        echo "<tr>
-                            <th>1</th>
-                            <td>José pereira da Silva</td>
-                            <td>jose.pereira@gmail.com</td>
-                            <td class='table-icon-width'>User
-                                <a href='#'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
-                                <a href='#'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
-                                <a href='#'><i id='icon-trash' class=' fa-solid fa-trash'></i></a>
-                            </td>
-                        </tr>"
+                        include_once '../model/Data.php';
+                        $data = new Data();
+                        $result = $data->tableC();
+                        $i = 1;
+                        while($res = mysqli_fetch_assoc($result)){
+                            echo "<tr>
+                                <th>".$i."</th>
+                                <td>".$res['nome']."</td>
+                                <td>".$res['email']."</td>
+                                <td class='table-icon-width'>".$res['permissao']."
+                                    <a href='#'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
+                                    <a href='#'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
+                                    <a href='#'><i id='icon-trash' class=' fa-solid fa-trash'></i></a>
+                                </td>
+                            </tr>";
+                            $i = $i + 1;
+                        }
                     ?>
                 </table>
             </div>

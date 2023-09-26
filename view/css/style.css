@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    overflow: hidden;
+
 }
 .main {
     display: flex;
@@ -32,95 +32,12 @@ body {
     border-radius: 15px;
     align-items: center;
 }
-.head-itens{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 80px;
-    background-color: #B9E5EB;
-}
-
-.head-itens img {
-    margin: 10px;
-    width: 60px;
-    height: 60px;
-}
-
-.head-itens a {
-    margin: 10px;
-    margin-left: 90%;
-    font-size: xx-large;
-    color: blue;
-}
-
-.forms-itens {
-    width: 90%;
-    height: 62vh;
-    margin-top: 5%;
-    margin-left: 5%;
-    overflow: hidden;
-}
-
-.form-conteiner div{
-    margin: 10px;
-    width: 150%;
-}
-
-.forms-itens form {
-    height: 100%;
-    margin-top: 5%;
-    display: flex;
-    flex-direction: row;
-    align-items:flex-start;
-}
-
-.forms-itens input {
-    width: 400px;
-}
-
-.form-submit select{
-   margin-top: 40px;
-}
-
-.form-submit  button {
-    margin-top: 60px;
-    margin-left: 50vh;
-}
-.search-itens {
-    width: 100%;
-    height: 20vh;
-    margin-top: 2%;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    background-color: chartreuse;
-}
-
-.search-itens input{
-    width: 50vh;
-}
-.search-btn div {
-    margin-left: 2%;
-}
-
-.search-btn button {
-    margin: 10px;
-    margin-top: 30px;
-    padding: 5px;
-}
-
-#btn-register{
-    margin-left: 115vh;
-}
-
-.table-content{
-   table-layout: fixed;
-}
 
 .image img{
     width: 160px;
     height: 160px;
     margin-top: 20%;
+    margin-left: 5%;
     margin-bottom: 15%;
 }
 
@@ -158,6 +75,141 @@ body {
    margin: 5px;
 }
 
+
+.head-itens{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    background-color: #B9E5EB;
+    box-shadow: 5px 5px 10px #888888;
+}
+
+.head-itens img {
+    margin: 10px;
+    margin-left: 2%;
+    width: 60px;
+    height: 60px;
+
+}
+
+.head-itens a {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    margin-left: 90%;
+    font-size: 6vh;
+    color: blue;
+}
+
+.forms-itens {
+    width: 90%;
+    height: 62vh;
+    margin-top: 5%;
+    margin-left: 5%;
+    overflow: hidden;
+}
+
+.form-conteiner div{
+    margin: 10px;
+    width: 150%;
+}
+
+.forms-itens form {
+    height: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+}
+
+.forms-itens input {
+    width: 400px;
+}
+
+.form-submit select{
+   margin-top: 40px;
+}
+
+.form-submit  button {
+    margin-top: 60px;
+    margin-left: 50vh;
+}
+
+.search-itens {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.search-input {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.search-itens input{
+    width: 50vh;
+}
+
+.search-btn button {
+    margin: 5%;
+    margin-top: 30%;
+    padding: 5px;
+}
+
+.table-content{
+  width: 100%;
+  height: max-content;
+  margin-bottom: 20vh;
+}
+.table-content table {
+    margin-left: 2%;
+    width: 80%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table-content td {
+  font-size: large;
+}
+
+.table-content th {
+    border: 1px inset #aeaeaed8;
+    padding: 5px;
+    text-align: left; 
+}
+
+.table-content td {
+    border: 1px solid #aeaeaed8;
+    padding: 5px;
+    text-align: left;   
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-icon-width{
+    width: 10%;
+}
+
+.table-content i {
+    margin-left: 1%;
+}
+
+#icon-plus {
+    color: chartreuse;
+}
+
+#icon-pencil {
+    color: blue;
+}
+#icon-trash {
+    color: red;
+}
+
 footer {
     display: flex;
     align-items: center;
@@ -165,6 +217,7 @@ footer {
     width: 100%;
     background-color: 201,207,222;
     background-color: rgb(221, 221, 221);
+    position: absolute;
 }
 .footer-itens{
     margin-left: 45%;

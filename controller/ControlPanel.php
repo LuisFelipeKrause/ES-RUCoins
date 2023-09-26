@@ -5,34 +5,43 @@ use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 $ctrl = new ControlPanel();
 
-if(isset($_GET['enter'])){
+if(isset($_POST['enter'])){
     if($ctrl->VerificadorPI()==1){
         require_once "../ES-RUCoins/model/Data.php";
         $data = new Data();
-        $string = $data->login($_GET['CPF'], $_GET['Pass']);
+        $string = $data->login($_POST['CPF'], $_POST['Pass']);
         if($string == -1){
             return -1;
         }
         $acesso = JWT::decode($string, new key("htsres", 'HS256'));
         $line = json_encode($acesso);
         $line = json_decode($line, true);
-        if($line['perm'] == 1){
-            echo "Gerente de TI logado";
+        if($line['perm'] <= 2){
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, "http://localhost/PHP/ES-RUCOINS/view/AdmUser.php");
+            curl_exec($curl);
+            curl_close($curl);
+            if(isset($_POST['Register'])){
+                    $curl = curl_init();
+                    curl_setopt($curl, CURLOPT_URL, "http://localhost/PHP/ES-RUCOINS/view/CadstroUsuario.html");
+                    curl_exec($curl);
+                    curl_close($curl);
+            }else{
+                if(isset($_POST['Search'])){
+                    echo "okd";
+                }
+            }
         }else{
-            if($line['perm'] == 2){
-                echo "Administrador logado";
-            }  else{
-                if($line['perm'] == 3){
-                    echo "Atendente logado";
+            if($line['perm'] == 3){
+                echo "Atendente logado";
+            }else{
+                if($line['perm'] == 4){
+                    echo "Cobrador logado";
                 }else{
-                    if($line['perm'] == 4){
-                        echo "Cobrador logado";
+                    if($line['perm'] == 5){
+                        echo "Usuário logado";
                     }else{
-                        if($line['perm'] == 5){
-                            echo "Usuário logado";
-                        }else{
-                            echo "Cadastro não encontrado!";
-                        }
+                        echo "Cadastro não encontrado!";
                     }
                 }
             }
@@ -40,15 +49,15 @@ if(isset($_GET['enter'])){
         
     }
 }else{
-    if(isset($_GET['forgotPass'])){
+    if(isset($_POST['forgotPass'])){
         echo "Página de esqueceu a senha";
     }
 }
 
 class ControlPanel{
     public function VerificadorPI(){
-        if(isset($_GET['CPF']) && !empty($_GET['CPF'])){
-           if(isset($_GET['Pass']) && !empty($_GET['Pass'])){
+        if(isset($_POST['CPF']) && !empty($_POST['CPF'])){
+           if(isset($_POST['Pass']) && !empty($_POST['Pass'])){
                 return 1;
            }else{
                 echo("Senha vazia!");

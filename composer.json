@@ -1,10 +1,17 @@
 {
-    "name": "luizfilipe/login",
+    "name": "luiz/filipe",
     "autoload": {
         "psr-4": {
-            "app\\":"app"
+            "Luiz\\Filipe\\": "src/"
         }
     },
-    "require": {"firebase/php-jwt":"^6.8"
-}
+    "authors": [
+        {
+            "name": "LuFi-1227",
+            "email": "luizsalvesp@protonmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.8"
+    }
 }

@@ -48,7 +48,7 @@ class Data{
 
         $tablename = "usuarios";
 
-        $query = "SELECT * FROM $tablename where usuarios.usuarios_id = '$id';";
+        $query = "SELECT * FROM $tablename where usuario_id = '$id';";
         $result = mysqli_query($pdo, $query);
         $pdo->close();
         return $result;

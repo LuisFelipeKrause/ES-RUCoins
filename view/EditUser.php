@@ -1,13 +1,13 @@
+<?php
+        include_once '../model/Data.php';
+        $data = new Data();
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $linha = $data->tableId(1);
+        $vetor = mysqli_fetch_assoc($linha);
+        var_dump($vetor);
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php
-include_once '../model/Data.php';
-$data = new Data();
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    echo $id;
-    $vetor2 = $data->tableId($id);
-    $vetor = mysqli_fetch_assoc($vetor2);
-?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,11 +28,11 @@ $data = new Data();
                 <div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nome</label>
-                        <input type="text" class="form-control" name="name" value="<?php $vetor['nome']; ?>" id="" aria-describedby="">
+                        <input type="text" class="form-control" name="name" value="<?php $vetor["nome"]; ?>" id="" aria-describedby="">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">CPF</label>
-                        <input type="text" class="form-control" name="CPF" id="" <?php $vetor['cpf']; ?> aria-describedby="">
+                        <input type="text" class="form-control" name="CPF" id="" value="<?php $vetor['cpf']; ?> " aria-describedby="">
                     </div>
                 </div>
 

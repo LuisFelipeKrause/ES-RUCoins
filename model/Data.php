@@ -42,6 +42,18 @@ class Data{
         return $result;
     }
 
+    public function tableId($id){
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+
+        $tablename = "usuarios";
+
+        $query = "SELECT * FROM $tablename where usuarios.usuarios_id = '$id';";
+        $result = mysqli_query($pdo, $query);
+        $pdo->close();
+        return $result;
+    }
+
     public function tableC(){
         $pdo = new Connection();
         $pdo = $pdo->Connect();
@@ -79,5 +91,17 @@ class Data{
         }
         return false;
     }
+
+    public static function delete($obj){
+        $pdo = new Connection();
+        $pdo = $pdo->Connect();
+
+        $tablename = "usuarios";
+
+        $query = "DELETE FROM $tablename WHERE usuario_id = $obj";
+        $result = mysqli_query($pdo, $query);
+        $pdo->close();
+    }
+
 }
 ?>

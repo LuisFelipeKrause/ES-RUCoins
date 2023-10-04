@@ -47,6 +47,7 @@
                         <th class="table-icon-width">Permissão</th>
                     </tr>
                     <?php
+                    include_once '../controller/teste.php';
                     include_once '../model/Data.php';
                         if(isset($_POST['Search']) && isset($_POST['CPF']) && !empty($_POST['CPF'])){
                             $data = new Data();
@@ -69,9 +70,9 @@
                                     <td>".$res['nome']."</td>
                                     <td>".$res['email']."</td>
                                     <td class='table-icon-width'>".$res['permissao']."
-                                        <a href='#'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
-                                        <a href='#'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
-                                        <a href='#'><i id='icon-trash' class=' fa-solid fa-trash'></i></a>
+                                    <button type='button'  class='btn btn-block btn-primary' onclick='exibe(".json_encode($res).")'><i id='icon-plus' class='fa-solid fa-plus'></i></button>
+                                    <a href='./EditUser.php?id='".$res['usuario_id']."><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
+                                    <button type='submit' name='lix' onclick='apaga(".$res['usuario_id'].")'><i id='icon-trash' class=' fa-solid fa-trash'></i></button>
                                     </td>
                                 </tr>";
                                 $i = $i + 1;
@@ -91,5 +92,26 @@
     </footer>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function exibe(objeto){
+        newPopup(objeto);
+    }
 
+    function apaga(objeto){
+        document.cookie = escape('id') + "=" + 
+            escape(objeto) + "; path=/";
+
+        document.write('<?php Data::delete($_COOKIE['id']);?>');
+    }
+    function newPopup(objeto){
+        newpopupWindow = window.open('', 'pagina', "width=250 height=250");
+        newpopupWindow.document.write("ID = ", objeto.usuario_id, "<br/>",
+                                      "Nome = ", objeto.nome, "<br/>",
+                                      "Sobrenome = ", objeto.sobrenome, "<br/>",
+                                      "CPF = ", objeto.cpf, "<br/>",
+                                      "Email = ", objeto.email, "<br/>",
+                                      "Data de nascimento = ", objeto.data_de_nascimento, "<br/>",
+                                      "Permissão = ", objeto.permissao), "<br/>";
+    }
+</script>
 </html>

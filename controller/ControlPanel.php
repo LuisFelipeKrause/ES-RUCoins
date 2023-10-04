@@ -10,7 +10,7 @@ if(isset($_POST['enter'])){
         $data = new Data();
         $string = $data->login($_POST['CPF'], $_POST['Pass']);
         if($string == -1){
-            header("Location: http://localhost/PHP/ES-RUCOINS/view/PaginaInicial.html");
+            header("Location: ../view/PaginaInicial.html");
             echo "usuário não encontrado ou senha errada!";
             return -1;
         }
@@ -18,7 +18,7 @@ if(isset($_POST['enter'])){
         $line = json_encode($acesso);
         $line = json_decode($line, true);
         if($line['perm'] <= 2){
-            header("Location: http://localhost/PHP/ES-RUCOINS/view/AdmUser.php");
+            header("Location: ../view/AdmUser.php");
         }else{
             if($line['perm'] == 3){
                 echo "Atendente logado";

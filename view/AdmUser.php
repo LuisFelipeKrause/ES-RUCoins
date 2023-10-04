@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="http://localhost/PHP/ES-RUCoins/view/css/style.css">
-    <title>RU-COINS</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -47,18 +47,16 @@
                         <th class="table-icon-width">Permissão</th>
                     </tr>
                     <?php
-                    include_once '../controller/teste.php';
-                    include_once '../model/Data.php';
+                        include_once '../controller/ControlPanel.php';
+                        $ctrl = new ControlPanel();
                         if(isset($_POST['Search']) && isset($_POST['CPF']) && !empty($_POST['CPF'])){
-                            $data = new Data();
-                            $list = $data->table($_POST['CPF']);
-                            resultados($list);
+                            $result = $ctrl->pullData(0, $_POST['CPF']);
+                            resultados($result);
                         }else{
                             if(isset($_POST['Register'])){
-                                header("Location: http://localhost/PHP/ES-RUCOINS/view/CadstroUsuario.html");
+                                header("Location: ../view/CadstroUsuario.html");
                             }else{
-                                $data = new Data();
-                                $result = $data->tableC();
+                                $result = $ctrl->pullData(2, null);
                                 resultados($result);
                             }
                         }
@@ -71,7 +69,9 @@
                                     <td>".$res['email']."</td>
                                     <td class='table-icon-width'>".$res['permissao']."
                                     <button type='button'  class='btn btn-block btn-primary' onclick='exibe(".json_encode($res).")'><i id='icon-plus' class='fa-solid fa-plus'></i></button>
-                                    <a href='./EditUser.php?id='".$res['usuario_id']."><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
+
+                                    <a href='./EditUser.php?id=".$res['usuario_id']."'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
+
                                     <button type='submit' name='lix' onclick='apaga(".$res['usuario_id'].")'><i id='icon-trash' class=' fa-solid fa-trash'></i></button>
                                     </td>
                                 </tr>";
@@ -85,8 +85,8 @@
     </div>
     <footer class="footer">
         <div class="footer-itens">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/brasao_uft.webp" alt="">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/logocurso.png" alt="">
+            <img src="./img/brasao_uft.webp" alt="">
+            <img src="./img/logocurso.png" alt="">
         </div>
         Engenharia de software 2023/2
     </footer>
@@ -98,10 +98,8 @@
     }
 
     function apaga(objeto){
-        document.cookie = escape('id') + "=" + 
-            escape(objeto) + "; path=/";
-
-        document.write('<?php Data::delete($_COOKIE['id']);?>');
+        newpopupWindow = window.open('', 'pagina', "width=250 height=250");
+        newpopupWindow.document.write("Deseja apagar este registro? <br/> <a href='../controller/deletPanel.php?id=",objeto,"'><button type='submit' name='yes'>Sim</button></a> <a href='#' onclick='window.close()'><button type='submit' name='not'>Não</button></a>");
     }
     function newPopup(objeto){
         newpopupWindow = window.open('', 'pagina', "width=250 height=250");

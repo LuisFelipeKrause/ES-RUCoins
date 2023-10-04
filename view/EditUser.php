@@ -1,8 +1,8 @@
 <?php
-        include_once '../model/Data.php';
-        $data = new Data();
+        include_once '../controller/ControlPanel.php';
+        $ctrl = new ControlPanel();
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-        $linha = $data->tableId(1);
+        $linha = $ctrl->pullData(1, $id);
         $vetor = mysqli_fetch_assoc($linha);
 ?>
 <!DOCTYPE html>
@@ -12,18 +12,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost/PHP/ES-RUCoins/view/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Editar Usuário</title>
 </head>
 
 <body>
     <div class="main">
         <div class="head-itens">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/brasao_uft.webp" alt="">
+            <img src="./img/brasao_uft.webp" alt="">
             <a href="#"><i class="fa-solid fa-user"></i></a>
         </div>
         <div class="forms-itens">
             <form class="form-conteiner" action="../controller/EditPanel.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $vetor["usuario_id"]; ?>">
                 <div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nome</label>
@@ -59,8 +60,8 @@
     </div>
     <footer class="footer">
         <div class="footer-itens">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/brasao_uft.webp" alt="">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/logocurso.png" alt="">
+            <img src="./img/brasao_uft.webp" alt="">
+            <img src="./img/logocurso.png" alt="">
         </div>
         Engenharia de software 2023/2
     </footer>

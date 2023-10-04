@@ -4,7 +4,6 @@
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
         $linha = $data->tableId(1);
         $vetor = mysqli_fetch_assoc($linha);
-        var_dump($vetor);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,27 +27,27 @@
                 <div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nome</label>
-                        <input type="text" class="form-control" name="name" value="<?php $vetor["nome"]; ?>" id="" aria-describedby="">
+                        <input type="text" class="form-control" name="name" value="<?php echo $vetor["nome"]; ?>" id="" aria-describedby="">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">CPF</label>
-                        <input type="text" class="form-control" name="CPF" id="" value="<?php $vetor['cpf']; ?> " aria-describedby="">
+                        <input type="text" class="form-control" name="CPF" id="" value="<?php echo $vetor['cpf']; ?> " aria-describedby="">
                     </div>
                 </div>
 
                 <div>
                     <div class="mb-3">
                         <label for="" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" <?php $vetor['email']; ?> id="" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" name="email" value="<?php echo $vetor['email']; ?>" id="" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Número de matricula</label>
-                        <input type="text" class="form-control" name="numMat" <?php $vetor['numMat']; ?> id="" aria-describedby="">
+                        <input type="text" class="form-control" name="numMat" valor="<?php echo "NULL"; ?>" id="" aria-describedby="">
                     </div>
                 </div>
                 <div class="form-submit">
                     <select class="form-select" name="optione" aria-label="Permissão">
-                        <option selected><?php $vetor['permissao']; ?></option>
+                        <option selected><?php echo $vetor['permissao']; ?></option>
                         <option value="1">Adm</option>
                         <option value="2">Usuário</option>
                         <option value="3">Tecnico</option>

@@ -6,19 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost/PHP/ES-RUCoins/view/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Home</title>
 </head>
 
 <body>
+    <?php include "./components/header.html"?>
     <div class="main">
-        <section>
-            <div class="head-itens">
-                <img src="http://localhost/PHP/ES-RUCoins/view/img/brasao_uft.webp" alt="">
-                <a href="#"><i class="fa-solid fa-circle-user"></i></a>
-            </div>
-        </section>
-
         <section>
             <div class="search-itens">
                 <form class="search-form" method="post" action="">
@@ -54,7 +48,7 @@
                             resultados($result);
                         }else{
                             if(isset($_POST['Register'])){
-                                header("Location: ../view/CadstroUsuario.html");
+                                header("Location: ../view/CadstroUsuario.php");
                             }else{
                                 $result = $ctrl->pullData(2, null);
                                 resultados($result);
@@ -68,7 +62,7 @@
                                     <td>".$res['nome']."</td>
                                     <td>".$res['email']."</td>
                                     <td class='table-icon-width'>".$res['permissao']."
-                                    <button type='button'  class='btn btn-block btn-primary' onclick='exibe(".json_encode($res).")'><i id='icon-plus' class='fa-solid fa-plus'></i></button>
+                                    <a href='./VisualUser.php?id=".$res['usuario_id']."'><i id='icon-plus' class='fa-solid fa-plus'></i></a>
 
                                     <a href='./EditUser.php?id=".$res['usuario_id']."'><i id='icon-pencil' class='fa-regular fa-pen-to-square'></i></a>
 
@@ -83,33 +77,13 @@
             </div>
         </section>
     </div>
-    <footer class="footer">
-        <div class="footer-itens">
-            <img src="./img/brasao_uft.webp" alt="">
-            <img src="./img/logocurso.png" alt="">
-        </div>
-        Engenharia de software 2023/2
-    </footer>
+    <?php include "./components/footer.html"?>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    function exibe(objeto){
-        newPopup(objeto);
-    }
-
     function apaga(objeto){
-        newpopupWindow = window.open('', 'pagina', "width=250 height=250");
-        newpopupWindow.document.write("Deseja apagar este registro? <br/> <a href='../controller/deletPanel.php?id=",objeto,"'><button type='submit' name='yes'>Sim</button></a> <a href='#' onclick='window.close()'><button type='submit' name='not'>Não</button></a>");
-    }
-    function newPopup(objeto){
-        newpopupWindow = window.open('', 'pagina', "width=250 height=250");
-        newpopupWindow.document.write("ID = ", objeto.usuario_id, "<br/>",
-                                      "Nome = ", objeto.nome, "<br/>",
-                                      "Sobrenome = ", objeto.sobrenome, "<br/>",
-                                      "CPF = ", objeto.cpf, "<br/>",
-                                      "Email = ", objeto.email, "<br/>",
-                                      "Data de nascimento = ", objeto.data_de_nascimento, "<br/>",
-                                      "Permissão = ", objeto.permissao), "<br/>";
+        newpopupWindow = window.open('', 'Apagar Registro?', "width=250 height=150");
+        newpopupWindow.document.write("<h1 style='color:black; font-size:20px; text-align: center;'>Deseja apagar este registro?</h1><a href='../controller/deletPanel.php?id=",objeto,"'><button btn-lg' type='submit' name='yes' style='background-color:red; width:90; height:30px; border:none; border-radius: 30px; color:white; text-align:center;  margin: 15px 15px;'>Sim</button></a> <a href='#' onclick='window.close()'><button type='submit' name='not' style='background-color:blue; width:90; height:30px; border:none; border-radius: 30px; color:white; text-align:center;'>Não</button></a>");
     }
 </script>
 </html>

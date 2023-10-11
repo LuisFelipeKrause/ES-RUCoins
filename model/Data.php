@@ -36,7 +36,7 @@ class Data{
 
         $tablename = "usuarios";
 
-        $query = "SELECT nome, email, legendas_permissao.permissao FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id and usuarios.cpf = '$cpf';";
+        $query = "SELECT * FROM $tablename inner join legendas_permissao where usuarios.permissao = legendas_permissao_id and usuarios.cpf = '$cpf';";
         $result = mysqli_query($pdo, $query);
         $pdo->close();
         return $result;

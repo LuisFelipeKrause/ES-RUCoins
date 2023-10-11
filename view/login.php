@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
-    <title>RU-COINS</title>
+    <title>Tela de login</title>
 </head>
 
 <body>
@@ -36,13 +36,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer-itens">
-            <img src="./img/brasao_uft.webp" alt="">
-            <img src="./img/logocurso.png" alt="">
-        </div>
-        Engenharia de software 2023/2
-    </footer>
+    <?php include "./components/footer.html"?>
 </body>
 
 </html>

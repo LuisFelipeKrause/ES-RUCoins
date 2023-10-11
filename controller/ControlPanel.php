@@ -70,5 +70,11 @@ class ControlPanel{
             }
         }
     }
+
+    public function logOut(){
+        unset($_SESSION['jwt']);
+        session_destroy();
+        header('Location: ../view/PaginaInicial.php');
+    }
 }
 ?>

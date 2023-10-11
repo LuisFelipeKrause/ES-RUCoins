@@ -21,36 +21,30 @@
         <?php include "./components/header.html"?>
         <div class="forms-itens">
             <form class="form-conteiner" action="../controller/EditPanel.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $vetor["usuario_id"]; ?>">
                 <div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nome</label>
-                        <input type="text" class="form-control" name="name" value="<?php echo $vetor["nome"]; ?>" id="" aria-describedby="">
+                        <input type="text" class="form-control" name="name" value="<?php echo $vetor["nome"]; ?>" readonly="readonly">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">CPF</label>
-                        <input type="text" class="form-control" name="CPF" id="" value="<?php echo $vetor['cpf']; ?> " aria-describedby="">
+                        <input type="text" class="form-control" name="CPF" id="" value="<?php echo $vetor['cpf']; ?> " readonly="readonly">
                     </div>
                 </div>
 
                 <div>
                     <div class="mb-3">
                         <label for="" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" value="<?php echo $vetor['email']; ?>" id="" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" name="email" value="<?php echo $vetor['email']; ?>" id="" readonly="readonly">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Número de matricula</label>
-                        <input type="text" class="form-control" name="numMat" valor="<?php echo "NULL"; ?>" id="" aria-describedby="">
+                        <input type="text" class="form-control" name="numMat" valor="<?php echo "NULL"; ?>" id="" readonly="readonly">
                     </div>
                 </div>
-                <div class="form-submit">
-                    <select class="form-select" name="optione" aria-label="Permissão">
-                        <option selected><?php echo $vetor['permissao']; ?></option>
-                        <option value="1">Adm</option>
-                        <option value="2">Usuário</option>
-                        <option value="3">Tecnico</option>
-                    </select>
-                    <button type="submit" name="enter" class="btn btn-primary">Editar</button>
+                <div class="mb-3">
+                        <label for="" class="form-label">Permissão</label>
+                        <input type="text" class="form-control" name="numMat" valor="<?php echo $vetor['permissao']; ?>" id="" readonly="readonly">
                 </div>
             </form>
         </div>

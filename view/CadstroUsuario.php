@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost/PHP/ES-RUCoins/view/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>RU-COINS</title>
 </head>
 
 <body>
     <div class="main">
-        <div class="head-itens">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/brasao_uft.webp" alt="">
-            <a href="#"><i class="fa-solid fa-user"></i></a>
-        </div>
+        <?php include "./components/header.html"?>
         <div class="forms-itens">
             <form class="form-conteiner" action="../controller/CadPanel.php" method="post">
                 <div>
@@ -51,13 +48,7 @@
             </form>
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer-itens">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/brasao_uft.webp" alt="">
-            <img src="http://localhost/PHP/ES-RUCoins/view/img/logocurso.png" alt="">
-        </div>
-        Engenharia de software 2023/2
-    </footer>
+    <?php include "./components/footer.html"?>
 </body>
 <script src="https://kit.fontawesome.com/4bfe745599.js" crossorigin="anonymous"></script>
 
